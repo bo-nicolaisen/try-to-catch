@@ -1,37 +1,80 @@
 
-myErrorCatch();
+
+// load your data
+//let myFetchedData=loadData('https://dog.ceo/api/breeds/image/random');
+
+let myFetchedData=loadData('https://dogi.ceo/api/breeds/image/random');
 
 
-function myErrorCatch() {
-    try {
 
-        // code error
-        // bummer();
+//Load Data function
+function loadData(apiUrl){
 
-        //thrown error 
-        //throw "test throw";
+    console.log("fetching data");
+   
 
-        //thrown error with message
-        throw new Error('test message');
+    fetch(apiUrl)
 
+    .then(   (response) => {
+      // wait for fetch to complete
+
+      if (!response.ok) {
+        throw Error(response.statusText);
     }
 
-    catch (err) {
+        return response.json();
 
-        //document.getElementById("app").innerHTML =err.message; 
-        // correct error catching
+      }
+      )
+      
+      .then(    (data) => {
+        // do something with 'data' 
 
-        if (err.message) {
+        buildView(data.message,"Dagens Hund");
+      
+      })
 
-            document.getElementById("app").innerHTML = "error name: " + err.name + "<br> message: " + err.message;
-        }
-        else {
-            document.getElementById("app").innerHTML = "Error: " + err
-        }
 
-    }
+      .catch( (err) => {
+        // do something with 'error' 
 
+        showError(err);
+      
+      }
+
+      );
+}
+
+
+
+// dom setup
+// get the Dom element to work within
+
+
+
+function buildView(myImgUrl,myHeadline){
+  let app=document.getElementById("app");
+
+  let myTitle=document.createElement("h2");
+
+  myTitle.innerText=myHeadline;
+   
+let dogImg=document.createElement("img");
+dogImg.src=myImgUrl;
+
+app.appendChild(myTitle);
+app.appendChild(dogImg);
 
 }
 
+function showError(myError){
+
+  buildView("http://placekitten.com/200/300","hunden blev spist af:");
+   // document.getElementById("app").innerHTML=myError;
+
+}
+
+
+
+   
 
