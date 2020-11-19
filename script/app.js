@@ -3,7 +3,7 @@
 // load your data
 //let myFetchedData=loadData('https://dog.ceo/api/breeds/image/random');
 
-let myFetchedData=loadData('https://dogi.ceo/api/breeds/image/random');
+let myFetchedData=loadData('https://dog.ceo/api/breeds/image/random');
 
 
 
@@ -68,7 +68,7 @@ app.appendChild(dogImg);
 }
 
 function showError(myError){
-
+console.log("Error handling: "+myError);
   buildView("http://placekitten.com/200/300","hunden blev spist af:");
    // document.getElementById("app").innerHTML=myError;
 
